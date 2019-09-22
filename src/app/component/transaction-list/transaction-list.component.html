@@ -1,0 +1,43 @@
+<div class="card">
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <div class="row">
+        <div class="column left">
+          <h1 class="display-4 text-success my-4" style="font-size: 2 rem;">{{totalEarn | number:'1.0-2'}}</h1>
+          <p class="lead">Total Recieve</p>
+        </div>
+        <div class="column middle">
+          <h1 class="display-4 text-danger my-4">{{totalSpend | number:'1.0-2'}}</h1>
+          <p class="lead">Total Spend</p>
+        </div>
+        <div class="column right">
+          <h1 class="display-4 my-4">{{totalEarn - totalSpend | number:'1.0-2'}}</h1>
+          <p class="lead">Rest</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-body">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item overlay" *ngFor="let transaction of transactions" (click)="rowSelected(transaction)">
+        <div class="row">
+          <div class="column data-left">
+            <p class="font-italic">
+              <small>{{ transaction.date | date }} </small>
+            </p>
+            <p class="lead">{{ transaction.description }}</p>
+          </div>
+          <div class="column data-right">
+            <p></p>
+            <p *ngIf="transaction.type=='Spending'" class="text-danger" style="float:right">
+              -{{ transaction.amount | number:'1.0-2'}}</p>
+            <p *ngIf="transaction.type=='Earning'" class="text-success" style="float:right">
+              +{{ transaction.amount | number:'1.0-2' }}</p>
+          </div>
+        </div>
+      </li>
+      <li *ngIf="noData" class="list-group-item overlay">No record</li>
+    </ul>
+  </div>
+</div>

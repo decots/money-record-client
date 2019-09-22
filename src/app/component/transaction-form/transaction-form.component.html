@@ -1,0 +1,52 @@
+<div class="jumbotron">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <form [formGroup]="transactionForm" (ngSubmit)="onSubmit()">
+
+          <div class="form-group">
+            <label>Date</label>
+            <input type="date" formControlName="date" class="form-control" [(ngModel)]="transaction.date"
+              [ngClass]="{ 'is-invalid': submitted && f.date.errors }" />
+            <div *ngIf="submitted && f.date.errors" class="invalid-feedback">
+              <div *ngIf="f.date.errors.required">Date is required</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Transaction type</label>
+            <select formControlName="type" class="form-control" [(ngModel)]="transaction.type"
+              [ngClass]="{ 'is-invalid': submitted && f.type.errors }">
+              <option *ngFor="let type of types" [ngValue]="type">{{ type }}</option>
+            </select>
+            <div *ngIf="submitted && f.type.errors" class="invalid-feedback">
+              <div *ngIf="f.type.errors.required">Type is required</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Amount</label>
+            <input type="text" formControlName="amount" class="form-control" [(ngModel)]="transaction.amount"
+              [ngClass]="{ 'is-invalid': submitted && f.amount.errors }" />
+            <div *ngIf="submitted && f.amount.errors" class="invalid-feedback">
+              <div *ngIf="f.amount.errors.required">Amount is required</div>
+              <div *ngIf="f.amount.errors.pattern">Amount must be number</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Description</label>
+            <input type="text" formControlName="description" class="form-control" [(ngModel)]="transaction.description"
+              [ngClass]="{ 'is-invalid': submitted && f.description.errors }" maxlength="30" />
+            <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+              <div *ngIf="f.description.errors.required">Description is required</div>
+            </div>
+          </div>
+
+          <button class="btn btn-primary" style="float: right">Save</button>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

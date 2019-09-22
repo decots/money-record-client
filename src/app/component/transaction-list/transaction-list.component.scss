@@ -1,0 +1,38 @@
+h1 {
+  /* Extra small devices (phones, less than 768px) */
+  font-size: 20px;
+
+  /* Small devices (tablets, 768px and up) */
+  @media (min-width: 768px) {
+    font-size: 20px;
+  }
+
+  /* Medium devices (desktops, 992px and up) */
+  @media (min-width: 992px) {
+    font-size: 32px;
+  }
+
+  /* Large devices (large desktops, 1200px and up) */
+  @media (min-width: 1200px) {
+    font-size: 42px;
+  }
+}
+
+.left,
+.right,
+.middle {
+  width: 33%;
+  text-align: center;
+}
+
+.data-left {
+  width: 50%;
+  text-align: left;
+}
+
+.data-right {
+  //   margin-top: 2em;
+  width: 50%;
+  text-align: right;
+  vertical-align: middle;
+}
